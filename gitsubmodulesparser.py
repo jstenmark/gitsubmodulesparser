@@ -5,24 +5,18 @@ import re
 from typing import List, Tuple
 
 
-def convert_and_validate_gitmodules_file(gitmodules_path: str = ".gitmodules") -> List[Tuple[str, str, str, str, str]]:
+def convert_and_validate_gitmodules_file(gitmodules_path: str = ".gitmodules") -> List[Tuple[str, str, str]]:
     if not os.path.exists(gitmodules_path):
         raise FileNotFoundError(
             f"Gitmodules file '{gitmodules_path}' not found.")
 
     with open(gitmodules_path, "r") as file:
-        gitmodules_content = file.read()
+        content = file.read()
 
-    submodule_pattern = (
-        r'\n\s*\[submodule\s+"([^"]+)"\]\n\s+path\s+=\s+([^ ]+)\n\s+url\s+=\s+([^ ]+)\n\s+shallow\s+=\s+([^ ]+)\n\s+ignore\s+=\s+([^ ]+)\n'
-    )
-    matches = re.findall(submodule_pattern, gitmodules_content)
-    submodules = []
-    for match in matches:
-        submodule_name, submodule_path, submodule_url, submodule_shallow, submodule_ignore = match
-        submodules.append((submodule_name, submodule_path,
-                          submodule_url, submodule_shallow, submodule_ignore))
-    return submodules
+    pattern = r'\[submodule "([^"]+)"\]\s*path = ([^\n]+)\s*url = ([^\n]+)'
+    matches = re.findall(pattern, content)
+
+    return matches  # This will be a list of tuples
 
 
 def main() -> None:
@@ -36,7 +30,7 @@ def main() -> None:
     gitmodules_file = args.gitmodules_file
     modules = convert_and_validate_gitmodules_file(gitmodules_file)
 
-    for name, path, url, shallow, ignore in modules:
+    for name, path, url in modules:
         git_command = f"git submodule add {'--force ' if args.force else ''}{url} {path}"
         print(git_command)
 

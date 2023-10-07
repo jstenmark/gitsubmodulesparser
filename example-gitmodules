@@ -23,5 +23,3 @@
     url = https://github.com/zdharma-continuum/fast-syntax-highlighting
     shallow = true
     ignore = dirty
-
-
