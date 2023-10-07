@@ -1,0 +1,28 @@
+
+[submodule "fonts/fira"]
+    path = fonts/fira
+    url = https://github.com/tonsky/FiraCode
+    shallow = true
+    ignore = dirty
+[submodule "fonts/hack"]
+    path = fonts/hack
+    url = https://github.com/source-foundry/Hack
+    shallow = true
+    ignore = dirty
+[submodule "fonts/JetBrainsMono"]
+    path = fonts/JetBrainsMono
+    url = https://github.com/JetBrains/JetBrainsMono
+    shallow = true
+    ignore = dirty
+[submodule "fonts/powerline-fonts"]
+    path = fonts/powerline-fonts
+    url = https://github.com/Lokaltog/powerline-fonts
+    shallow = true
+    ignore = dirty
+[submodule ".config/zsh/plugins/fast-syntax-highlighting"]
+    path = .config/zsh/plugins/fast-syntax-highlighting
+    url = https://github.com/zdharma-continuum/fast-syntax-highlighting
+    shallow = true
+    ignore = dirty
+
+
