@@ -23,19 +23,18 @@ def convert_gitmodules(gitmodules_file=gitmodules, force=False):
     result = []
     for section in config.sections():
         if config.has_option(section, 'url'):
-            submodule_name = config.get(section, 'name', fallback=section)
             submodule_path = config.get(section, 'path')
             submodule_url = config.get(section, 'url', fallback=None)
 
+            # Construct the git command
             git_command = "git submodule add"
             if force:
                 git_command += " --force"
             git_command += f" {submodule_url if submodule_url else ''} {submodule_path}"
+
             result.append(git_command)
 
     return "\n".join(result)
-
-
 
 
 if __name__ == "__main__":
