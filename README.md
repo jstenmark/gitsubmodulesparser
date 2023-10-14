@@ -7,7 +7,7 @@ Convert `.gitmodules` entries into `git submodule add` commands.
 ```bash
 # Install deps
 pip3 install -r requirements.txt
-``````
+```
 
 ```bash
 # Syntax
