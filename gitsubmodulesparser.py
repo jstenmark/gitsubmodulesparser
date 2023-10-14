@@ -4,8 +4,10 @@ import os
 import re
 from typing import List, Tuple
 
+gitmodules=".gitmodules"
 
-def convert_and_validate_gitmodules_file(gitmodules_path: str = ".gitmodules") -> List[Tuple[str, str, str]]:
+
+def convert_and_validate_gitmodules_file(gitmodules_path: str = gitmodules) -> List[Tuple[str, str, str]]:
     if not os.path.exists(gitmodules_path):
         raise FileNotFoundError(
             f"Gitmodules file '{gitmodules_path}' not found.")
@@ -25,7 +27,7 @@ def main() -> None:
     parser.add_argument("-f", "--force", action="store_true",
                         help="Add --force flag to git command")
     parser.add_argument("gitmodules_file", nargs="?",
-                        default=".gitmodules", help="Path to the gitmodules file")
+                        default=gitmodules, help="Path to the gitmodules file")
     args = parser.parse_args()
     gitmodules_file = args.gitmodules_file
     modules = convert_and_validate_gitmodules_file(gitmodules_file)
